@@ -3,7 +3,6 @@ var Twitter = require('twitter');
 
 var es = new EventSource('https://tf-firehose.herokuapp.com/events');
 
-
 var client = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET,
@@ -12,10 +11,13 @@ var client = new Twitter({
 });
 
 es.on('pullRequest', function(e) {
-  client.post('statuses/update', {status: 'I am a tweet'}, function(error, tweet, response){
-  if (!error) {
-    console.log(tweet);
-  }
-});
-  console.log(e.data);
+  var pr = JSON.parse(e.data)
+  var status = pr.user.nickname + " just opened a pull request to " + pr.repo_name + ": " + pr.issue_url
+  client.post('statuses/update', {status: status}, function(error, tweet, response){
+    if (!error) {
+      console.log(tweet);
+    } else {
+      console.log(error);
+    };
+  });
 });
