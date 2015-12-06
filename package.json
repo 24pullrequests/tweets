@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eventsource": "^0.1.6"
+    "eventsource": "^0.1.6",
+    "twitter": "^1.2.5"
   }
 }
