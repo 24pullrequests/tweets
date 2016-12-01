@@ -3,6 +3,8 @@ var Twitter = require('twitter');
 
 var es = new EventSource('https://tf-firehose.herokuapp.com/events');
 
+var muted_users = ['bsipocz']
+
 var client = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET,
@@ -12,6 +14,9 @@ var client = new Twitter({
 
 es.on('pullRequest', function(e) {
   var pr = JSON.parse(e.data)
+  if (muted_users.indexOf(pr.user.nickname) > -1) {
+    return;
+  }
   var status = pr.user.nickname + " just opened a pull request to " + pr.repo_name + ": " + pr.issue_url
   client.post('statuses/update', {status: status}, function(error, tweet, response){
     if (!error) {
