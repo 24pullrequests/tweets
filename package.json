@@ -8,15 +8,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node": "8.9.3"
+    "node": "8.9.0"
   },
-  
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ajv": "5.5.2",
     "eventsource": "^0.2.0",
-    "mime-db": "1.32.0",
     "twitter": "^1.2.5"
   }
 }
