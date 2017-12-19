@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ajv": "5.5.2",
     "eventsource": "^0.2.0",
+    "mime-db": "1.32.0",
     "twitter": "^1.2.5"
   }
 }
